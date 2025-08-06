@@ -4,9 +4,16 @@ import { Link } from "react-router-dom";
 const Item = ({ id, nombre, precio, imagen }) => {
   const [hovered, setHovered] = useState(false);
 
+  const formatoPrecio = (numero) =>
+    new Intl.NumberFormat("es-CL", {
+      style: "currency",
+      currency: "CLP",
+      minimumFractionDigits: 0,
+    }).format(numero);
+
   return (
-    <div className="max-w-xs bg-white rounded-lg shadow-md p-4 text-gray-900">
-      <h2 className="text-2xl font-semibold mb-4 text-center">{nombre}</h2>
+    <div className="max-w-xs bg-white rounded-lg shadow-md p-4 text-gray-900 flex flex-col justify-between">
+      <h2 className="text-xl font-semibold mb-4 text-center">{nombre}</h2>
 
       <div
         className="overflow-hidden rounded-md mb-4 cursor-pointer"
@@ -15,14 +22,16 @@ const Item = ({ id, nombre, precio, imagen }) => {
       >
         <img
           src={imagen}
-          alt={nombre}
+          alt={`Imagen de ${nombre}`}
           className={`w-full h-48 object-cover transition duration-300 ${
             hovered ? "filter-none" : "filter grayscale"
           }`}
         />
       </div>
 
-      <p className="text-lg font-bold mb-4 text-center">${precio}</p>
+      <p className="text-lg font-bold mb-4 text-center">
+        {formatoPrecio(precio)}
+      </p>
 
       <div className="flex gap-4">
         <Link

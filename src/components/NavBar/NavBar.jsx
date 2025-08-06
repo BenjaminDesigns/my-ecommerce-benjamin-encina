@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ecccoLogo from '../assets/logo.png';
-import CartWidget from './CartWidget';
+import ecccoLogo from "../../assets/logo.png";
+import CartWidget from '../CartWidget';
 
 const NavBar = () => {
   return (
@@ -17,13 +17,13 @@ const NavBar = () => {
 
         <ul className="text-white flex gap-12 items-center text-lg">
           <li className="transition-transform hover:scale-110">
-            <Link to="/category/teclados">Teclados</Link>
+            <Link to="/categoria/teclados">Teclados</Link>
           </li>
           <li className="transition-transform hover:scale-110">
-            <Link to="/category/auriculares">Audífonos</Link>
+            <Link to="/categoria/audio">Audífonos</Link>
           </li>
           <li className="transition-transform hover:scale-110">
-            <Link to="/category/mouse">Mouses</Link>
+            <Link to="/categoia/mouse">Mouses</Link>
           </li>
         </ul>
 
