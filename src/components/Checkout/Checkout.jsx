@@ -3,7 +3,7 @@ import { CartContext } from "../../context/CartContext";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import db from "../../db/db";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Checkout() {
@@ -29,7 +29,7 @@ export default function Checkout() {
     const { nombre, email, telefono } = dataForm;
 
     if (!nombre || !email || !telefono) {
-      alert("Completa todos los campos");
+      toast.error("Completa todos los campos");
       return;
     }
 
@@ -53,6 +53,7 @@ export default function Checkout() {
       toast.success("Gracias por comprar con nosotros");
     } catch (error) {
       console.error("Error al generar orden:", error);
+      toast.error("Error al generar la orden. Intenta nuevamente.");
     } finally {
       setEnviando(false);
     }
@@ -65,6 +66,7 @@ export default function Checkout() {
         <p className="text-lg">Tu ID de orden es:</p>
         <p className="font-mono text-indigo-600 mt-2">{ordenId}</p>
         <Link to="/" className="block mt-6 text-indigo-600 underline">Volver al inicio</Link>
+        <ToastContainer />
       </div>
     );
   }
@@ -76,6 +78,7 @@ export default function Checkout() {
         <Link to="/" className="text-indigo-600 underline">
           Volver al catálogo
         </Link>
+        <ToastContainer />
       </div>
     );
 
@@ -115,6 +118,7 @@ export default function Checkout() {
           {enviando ? "Generando orden..." : "Comprar"}
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 }
