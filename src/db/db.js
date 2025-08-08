@@ -3,17 +3,16 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDi3hGE2r4SSIXS3lVdCvmNYBIlixKuHc8",
-  authDomain: "ecommerce-73860-encina.firebaseapp.com",
-  projectId: "ecommerce-73860-encina",
-  storageBucket: "ecommerce-73860-encina.firebasestorage.app",
-  messagingSenderId: "385844099750",
-  appId: "1:385844099750:web:534bdb2b7eb961f3c45267"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore();
 
 export default db;
