@@ -31,15 +31,21 @@ export default function Cart() {
           <CartItem key={item.id} item={item} />
         ))}
       </div>
-      <div className="mt-6 flex justify-between items-center">
+      <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
         <h3 className="text-xl font-semibold">
           Total: ${totalPrice().toLocaleString("es-CL")}
         </h3>
-        <div className="flex gap-4">
-          <button onClick={handleClearCart} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+        <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
+          <button
+            onClick={handleClearCart}
+            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+          >
             Vaciar carrito
           </button>
-          <Link to="/checkout" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+          <Link
+            to="/checkout"
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-center"
+          >
             Finalizar compra
           </Link>
         </div>

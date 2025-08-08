@@ -39,11 +39,18 @@ export default function ItemDetail({ producto }) {
           <p className="text-indigo-600 text-2xl font-semibold">
             ${producto.precio.toLocaleString("es-CL")}
           </p>
-          <p className="text-sm text-gray-500 mt-3">Stock: {producto.stock}</p>
+
+          {producto.stock <= 3 && (
+            <div className="inline-block bg-red-600 mt-2 text-white text-sm px-3 py-1 rounded-full mb-1">
+              Últimas unidades
+            </div>
+          )}
+
+          <p className="text-sm text-gray-500 mt-1">Stock: {producto.stock}</p>
         </div>
 
         {agregado ? (
-          <div className="mt-6 flex gap-4">
+          <div className="mt-6 flex gap-4 max-[470px]:flex-col">
             <Link
               to="/cart"
               className="flex-1 bg-green-600 text-white px-4 py-3 rounded hover:bg-green-700 text-center transition"
