@@ -3,6 +3,8 @@ import { CartContext } from "../../context/CartContext";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import db from "../../db/db";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Checkout() {
   const { cart, totalPrice, clearCart } = useContext(CartContext);
@@ -31,6 +33,7 @@ export default function Checkout() {
       const docRef = await addDoc(collection(db, "ordenes"), orden);
       setOrdenId(docRef.id);
       clearCart();
+      toast.success("Gracias por comprar con nosotros");
     } catch (error) {
       console.error("Error al generar orden:", error);
     } finally {

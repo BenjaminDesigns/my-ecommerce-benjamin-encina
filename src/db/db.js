@@ -8,11 +8,12 @@ const firebaseConfig = {
   projectId: "ecommerce-73860-encina",
   storageBucket: "ecommerce-73860-encina.firebasestorage.app",
   messagingSenderId: "385844099750",
-  appId: "1:385844099750:web:0d47a44a1b14b409c45267"
+  appId: "1:385844099750:web:534bdb2b7eb961f3c45267"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 const db = getFirestore();
 
 export default db;

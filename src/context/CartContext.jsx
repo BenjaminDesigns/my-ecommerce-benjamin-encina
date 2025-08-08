@@ -21,13 +21,13 @@ export function CartProvider({ children }) {
   };
 
   const clearCart = () => setCart([]);
-  const removeItem = (id) => setCart(cart.filter(prod => prod.id !== id));
+  const removeFromCart = (id) => setCart(cart.filter(prod => prod.id !== id));
   const totalItems = () => cart.reduce((acc, prod) => acc + prod.cantidad, 0);
   const totalPrice = () => cart.reduce((acc, prod) => acc + prod.precio * prod.cantidad, 0);
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, clearCart, removeItem, totalItems, totalPrice }}
+      value={{ cart, addToCart, clearCart, removeFromCart, totalItems, totalPrice }}
     >
       {children}
     </CartContext.Provider>

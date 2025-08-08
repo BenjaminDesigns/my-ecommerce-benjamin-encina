@@ -1,16 +1,17 @@
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
-import Cart from "./components/Cart/Cart";
+import ItemListContainer from './components/Item/ItemListContainer';
+import ItemDetailContainer from './components/Item/ItemDetailContainer';
+import Cart from "./components/NavBar/Cart";
 import Checkout from "./components/Checkout/Checkout";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <BrowserRouter>
       <NavBar />
-
       <main className="max-w-7xl mx-auto px-4 py-8">
         <Routes>
           <Route path="/" element={<ItemListContainer />} />
@@ -28,6 +29,7 @@ function App() {
           />
         </Routes>
       </main>
+      <ToastContainer position="bottom-right" autoClose={2500} />
     </BrowserRouter>
   );
 }

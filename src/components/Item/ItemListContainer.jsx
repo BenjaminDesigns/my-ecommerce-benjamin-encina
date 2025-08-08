@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import db from "../../db/db";
-import ItemList from "../ItemList/ItemList";
+import ItemList from "../Item/ItemList";
 
 export default function ItemListContainer() {
   const [productos, setProductos] = useState([]);
@@ -13,7 +13,7 @@ export default function ItemListContainer() {
     const fetchProductos = async () => {
       setLoading(true);
       try {
-        const productosRef = collection(db, "productos");
+        const productosRef = collection(db, "products");
         const q = categoryId
           ? query(productosRef, where("categoria", "==", categoryId))
           : productosRef;

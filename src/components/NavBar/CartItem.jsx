@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
 export default function CartItem({ item }) {
-  const { removeItem } = useContext(CartContext);
+  const { removeFromCart } = useContext(CartContext);
 
   return (
     <div className="border rounded p-4 flex justify-between items-center shadow-sm bg-white">
@@ -19,7 +19,7 @@ export default function CartItem({ item }) {
         </div>
       </div>
       <button
-        onClick={() => removeItem(item.id)}
+        onClick={() => removeFromCart(item.id)}
         className="text-sm text-red-500 hover:underline"
       >
         Eliminar
