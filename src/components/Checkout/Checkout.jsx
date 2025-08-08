@@ -9,20 +9,37 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Checkout() {
   const { cart, totalPrice, clearCart } = useContext(CartContext);
 
-  const [nombre, setNombre] = useState("");
-  const [email, setEmail] = useState("");
-  const [telefono, setTelefono] = useState("");
+  const [dataForm, setDataForm] = useState({
+    nombre: "",
+    email: "",
+    telefono: ""
+  });
   const [ordenId, setOrdenId] = useState(null);
   const [enviando, setEnviando] = useState(false);
 
+  const handleChange = (e) => {
+    setDataForm({
+      ...dataForm,
+      [e.target.name]: e.target.value
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!nombre || !email || !telefono) return alert("Completa todos los campos");
+    const { nombre, email, telefono } = dataForm;
 
-    const orden = {
-      comprador: { nombre, email, telefono },
+    if (!nombre || !email || !telefono) {
+      alert("Completa todos los campos");
+      return;
+    }
+
+    const order = {
+      buyer: { ...dataForm },
       items: cart.map(({ id, nombre, precio, cantidad }) => ({
-        id, nombre, precio, cantidad
+        id,
+        nombre,
+        precio,
+        cantidad
       })),
       total: totalPrice(),
       fecha: Timestamp.fromDate(new Date())
@@ -30,7 +47,7 @@ export default function Checkout() {
 
     try {
       setEnviando(true);
-      const docRef = await addDoc(collection(db, "ordenes"), orden);
+      const docRef = await addDoc(collection(db, "orders"), order);
       setOrdenId(docRef.id);
       clearCart();
       toast.success("Gracias por comprar con nosotros");
@@ -68,23 +85,26 @@ export default function Checkout() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
+          name="nombre"
           placeholder="Nombre"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
+          value={dataForm.nombre}
+          onChange={handleChange}
           className="border px-3 py-2 rounded"
         />
         <input
           type="email"
+          name="email"
           placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={dataForm.email}
+          onChange={handleChange}
           className="border px-3 py-2 rounded"
         />
         <input
           type="tel"
+          name="telefono"
           placeholder="Teléfono"
-          value={telefono}
-          onChange={(e) => setTelefono(e.target.value)}
+          value={dataForm.telefono}
+          onChange={handleChange}
           className="border px-3 py-2 rounded"
         />
         <button
